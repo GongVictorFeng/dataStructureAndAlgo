@@ -11,6 +11,16 @@ public class BinaryTreeLL{
 		preOrder(node.right);
 	}
 
+	// InOrder Traversal
+	void inOrder(BinaryNode node){
+		if(node == null){
+			return;
+		}
+		inOrder(node.left);
+		System.out.print(node.value + " ");
+		inOrder(node.right);
+	}
+
 	public static void main(String[] args) {
 		BinaryTreeLL binaryTree = new BinaryTreeLL();
 		BinaryNode[] binaryNodes = new BinaryNode[9];
@@ -28,5 +38,7 @@ public class BinaryTreeLL{
 		binaryNodes[3].right = binaryNodes[8];
 		binaryTree.root = binaryNodes[0];
 		binaryTree.preOrder(binaryTree.root);
+		System.out.println();
+		binaryTree.inOrder(binaryTree.root);
 	}
 }
