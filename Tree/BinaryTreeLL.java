@@ -50,6 +50,27 @@ public class BinaryTreeLL{
 		}
 	}
 
+	public void search(String value){
+		Queue<BinaryNode> queue = new LinkedList<BinaryNode>();
+		queue.add(root);
+		while(!queue.isEmpty()){
+			BinaryNode currentNode = queue.remove();
+			if(currentNode.value.equals(value)){
+				System.out.println("The value-" + value + " is found in Tree");
+				return;
+			}
+			else{
+				if(currentNode.left != null){
+					queue.add(currentNode.left);
+				}
+				if(currentNode.right != null){
+					queue.add(currentNode.right);
+				}
+			}
+		}
+		System.out.println("The value-" + value + " is not found in Tree");
+	}
+
 	public static void main(String[] args) {
 		BinaryTreeLL binaryTree = new BinaryTreeLL();
 		BinaryNode[] binaryNodes = new BinaryNode[9];
@@ -73,5 +94,7 @@ public class BinaryTreeLL{
 		binaryTree.postOrder(binaryTree.root);
 		System.out.println();
 		binaryTree.levelOrder();
+		System.out.println();
+		binaryTree.search("N5");
 	}
 }
