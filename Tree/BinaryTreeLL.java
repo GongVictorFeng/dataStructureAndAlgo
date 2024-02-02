@@ -21,6 +21,15 @@ public class BinaryTreeLL{
 		inOrder(node.right);
 	}
 
+	void postOrder(BinaryNode node){
+		if(node == null){
+			return;
+		}
+		postOrder(node.left);
+		postOrder(node.right);
+		System.out.print(node.value + " ");
+	}
+
 	public static void main(String[] args) {
 		BinaryTreeLL binaryTree = new BinaryTreeLL();
 		BinaryNode[] binaryNodes = new BinaryNode[9];
@@ -40,5 +49,7 @@ public class BinaryTreeLL{
 		binaryTree.preOrder(binaryTree.root);
 		System.out.println();
 		binaryTree.inOrder(binaryTree.root);
+		System.out.println();
+		binaryTree.postOrder(binaryTree.root);
 	}
 }
