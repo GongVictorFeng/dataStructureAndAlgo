@@ -71,22 +71,39 @@ public class BinaryTreeLL{
 		System.out.println("The value-" + value + " is not found in Tree");
 	}
 
+	public void insert(String value){
+		BinaryNode newNode = new BinaryNode();
+		newNode.value = value;
+		if(root == null){
+			root = newNode;
+			System.out.println("Insert new node in root");
+			return;
+		}
+		Queue<BinaryNode> queue = new LinkedList<BinaryNode>();
+		queue.add(root);
+		while(!queue.isEmpty()){
+			BinaryNode currentNode = queue.remove();
+			if(currentNode.left == null){
+				currentNode.left = newNode;
+				System.out.println("Successfully insert");
+				return;
+			}
+			if(currentNode.right == null){
+				currentNode.right = newNode;
+				System.out.println("Successfully insert");
+				return;
+			}
+			queue.add(currentNode.left);
+			queue.add(currentNode.right);
+		}
+	}
+
 	public static void main(String[] args) {
 		BinaryTreeLL binaryTree = new BinaryTreeLL();
-		BinaryNode[] binaryNodes = new BinaryNode[9];
-		for(int i = 0; i < binaryNodes.length;){
-			binaryNodes[i] = new BinaryNode();
-			binaryNodes[i].value = "N" + (++i);
+		int numNode = 9;
+		for(int i = 0; i < numNode; i++){
+			binaryTree.insert("N" + (i + 1));
 		}
-		binaryNodes[0].left = binaryNodes[1];
-		binaryNodes[0].right = binaryNodes[2];
-		binaryNodes[1].left = binaryNodes[3];
-		binaryNodes[1].right = binaryNodes[4];
-		binaryNodes[2].left = binaryNodes[5];
-		binaryNodes[2].right = binaryNodes[6];
-		binaryNodes[3].left = binaryNodes[7];
-		binaryNodes[3].right = binaryNodes[8];
-		binaryTree.root = binaryNodes[0];
 		binaryTree.preOrder(binaryTree.root);
 		System.out.println();
 		binaryTree.inOrder(binaryTree.root);
@@ -96,5 +113,6 @@ public class BinaryTreeLL{
 		binaryTree.levelOrder();
 		System.out.println();
 		binaryTree.search("N5");
+
 	}
 }
