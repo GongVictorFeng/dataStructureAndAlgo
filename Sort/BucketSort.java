@@ -28,6 +28,7 @@ public class BucketSort{
 			}
 		}
 
+		@SuppressWarnings("unchecked")
 		ArrayList<Integer>[] buckets = new ArrayList[numberOfBuckets];
 		for(int i = 0; i < numberOfBuckets; i++){
 			buckets[i] = new ArrayList<Integer>();
